@@ -1,0 +1,175 @@
+:root {
+  color-scheme: light;
+
+  /* 1. CAMBIAR EL COLOR PRINCIPAL (Azul actual de la línea del gráfico y botones) */
+  --bs-primary: #00aff0; /* Ejemplo: un morado/índigo moderno */
+  --bs-primary-light: #1fb9f2;
+  --bs-primary-rgb: 99, 102, 241;
+  --bs-secondary: #1da1f2;
+
+  /* 2. CAMBIAR EL FONDO GENERAL DE LA PÁGINA */
+  --bs-body-bg: #f8fafc; /* Fondo gris claro muy suave */
+
+  /* 3. CAMBIAR EL COLOR DE LOS TEXTOS PRINCIPALES */
+  --bs-body-color: #0f172a; /* Azul oscuro/negro elegante */
+
+  /* Modificar el verde por defecto de Bootstrap (Éxito / Completado) */
+  --bs-success: #1fb9f2; /* Verde esmeralda */
+
+  /* Crear variables para estados de pendiente */
+  --color-warning-bg: #fffbe6;
+  --color-warning-text: #d97706;
+}
+/* Sobreescribir las insignias/etiquetas de éxito */
+.bg-success,
+.badge.bg-success,
+.text-bg-success {
+  background-color: var(--bs-success) !important;
+  color: #ffffff !important;
+}
+/* Cambia el azul oscuro del título pequeño superior */
+.text-primary,
+h6.text-primary,
+span.text-primary {
+  color: var(--bs-primary) !important; /* Reemplaza con tu tono preferido */
+}
+/* Cambia el color de fondo y borde de los botones azules */
+.btn-primary,
+.btn-primary.active,
+.menu-toggle {
+  background-color: #00aff0 !important;
+  border-color: #1da1f2 !important;
+  color: #ffffff !important;
+}
+
+/* Color cuando pasas el cursor por encima (Hover) */
+.btn-primary:hover,
+.menu-toggle:hover {
+  background-color: #1fb9f2 !important;
+  border-color: #00aff0 !important;
+}
+
+/*---------------------------------------------------------
+/* Color del elemento del menú cuando está activo/seleccionado */
+.sidebar .nav-link.active,
+.sidebar .list-group-item.active {
+  background-color: var(--bs-secondary) !important; /* Tu color principal */
+  color: #ffffff !important; /* Texto blanco */
+  border-radius: 8px; /* Bordes redondeados modernos */
+}
+
+/* Color al pasar el cursor (Hover) sobre una opción del menú */
+.sidebar .nav-link:hover,
+.sidebar .list-group-item:hover {
+  background-color: #f1f5f9 !important; /* Gris claro de fondo */
+  color: var(--bs-primary-light) !important; /* Texto del color de tu marca */
+}
+/* Cambiar el fondo de la pantalla completa */
+body {
+  margin: 0;
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+}
+
+.menu-toggle {
+  position: fixed;
+  z-index: 1050;
+  top: 1rem;
+  left: 1rem;
+  width: 44px;
+  height: 44px;
+  font-size: 1.25rem;
+  transition: left 0.25s ease;
+}
+
+.menu-toggle.open {
+  left: 200px;
+}
+/* Crear clase personalizada para etiquetas "Pendiente" */
+.badge-pending {
+  background-color: #fef3c7 !important; /* Fondo amarillo claro */
+  color: #d97706 !important; /* Texto naranja/amarillo oscuro */
+  font-weight: 600;
+}
+
+/* Crear clase personalizada para etiquetas "Cancelado" / "Fallido" */
+.badge-danger {
+  background-color: #fee2e2 !important; /* Fondo rojo claro */
+  color: #dc2626 !important; /* Texto rojo */
+  font-weight: 600;
+}
+.btn-outline-primary {
+  color: var(--bs-primary-light) !important;
+  border-color: var(--bs-primary) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--bs-secondary) !important;
+  color: #ffffff !important;
+}
+.sidebar {
+  position: fixed;
+  z-index: 1045;
+  inset: 0 auto 0 0;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+}
+
+.sidebar.show {
+  transform: translateX(0);
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  z-index: 1040;
+  inset: 0;
+  background: rgba(16, 35, 55, 0.35);
+}
+
+.sidebar.show + .sidebar-backdrop {
+  display: block;
+}
+
+.chart-container {
+  width: 100%;
+  height: 260px;
+}
+
+.chart-container svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.chart-grid {
+  stroke: #dee2e6;
+  stroke-width: 1;
+  stroke-dasharray: 5 6;
+}
+
+.chart-line {
+  fill: none;
+  stroke: var(--bs-primary);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.chart-months {
+  font-size: 0.75rem;
+}
+
+@media (max-width: 576px) {
+  .chart-container {
+    height: 190px;
+  }
+
+  .chart-months span:nth-child(even) {
+    display: none;
+  }
+}
