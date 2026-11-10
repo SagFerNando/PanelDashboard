@@ -33,6 +33,7 @@ export async function getPagosConRelaciones() {
       )
     `,
     )
+    .eq("estado", "aprobado")
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -67,8 +68,19 @@ export async function getPagosParaGrafica(): Promise<PagoGrafica[]> {
   const { data, error } = await supabase
     .from("pagos")
     .select("created_at, monto")
-    .eq("estado", "Completado"); // Cambia por tu estado (ej: "Aceptado")
+    .eq("estado", "aprobado"); // Cambia por tu estado (ej: "Aceptado")
 
   if (error) throw error;
   return data ?? [];
+}
+
+export async function getTotalSuscripcionesActivas(): Promise<number> {
+  const { count, error } = await supabase
+    .from("suscripciones")
+    .select("*", { count: "exact", head: true })
+    .eq("estado", "activa");
+
+  if (error) throw error;
+
+  return count ?? 0;
 }
